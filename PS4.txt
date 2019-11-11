@@ -1,0 +1,31 @@
+1. My experiment will be looking at the effect of inter-stimulus interval (ISI) on accuracy of Speech Perception in Noise (SPIN). Between subjects variable of ISI condition (equal ISI and no ISI). Stimulus will be an auditory file of a SPIN sentence—this is a sentence spoken with background noise. A trial will be the presentation of one SPIN sentence and a verbal response of the last word presented in the sentence. Responses will be recorded by the researcher during each trial (as either correct or incorrect). Participants will be presented with 100 trials, 50 in a low signal to noise ratio (where the difference in frequency between the sentence and the background noise is low) and 50 in a high signal to noise ratio (where the difference in frequency between the sentence and the background noise is high)—all 100 trials will be in one large file that python pulls from in a randomized order. No counterbalancing will be required, only randomization of sentences in the file. This will aid in understanding whether having more time in between trials improves performance. 
+NOTE: the ISI conditions have changed from my original proposal submission—instead of having a random ISI condition, I am having a no ISI condition—so I am looking more at time between trials and whether this has an effect on accuracy. 
+
+2. 
+
+#At the Subject Level
+
+subject= array [ ] #need to create a blank array with a particular subject ID (either e_ISI or n_ISI) for the participants responses and whichever SPIN 			                		   #sentence corresponds with that response will be recorded in as you go through the loop below. 
+low_high_SNR = read_directory(‘SNR file’)  #SNR file will contain all 100 SPIN sentences—50 in low SNR and 50 in high SNR. This line will read in the SNR file. Would be given an index number so 					   #that in the subject input list you can see this index number and whether the participant responded correct or incorrect and you can then go back and see 					   #which file (whether low or high SNR) corresponds to the index number 
+response_keys= [‘1’] , [‘0’]. #indicating which keys are used for a response. 1 is a correct response and 0 is an incorrect response.
+
+#At the Trial Level
+
+for participant in subject:  #will need a loop to go through all trials for each participant 
+	if subject == e_ISI  #indicating that if the subject is e_ISI (meaning they are in the equal ISI condition, then do the below code)
+		Random.shuffle(low_high_SNR) #randomize all entries in this file and then go through that randomized order, picking one at a time 
+		response_accuracy = keyboard_response (response_keys). #collect responses from the keyboard during stimulus presentation
+		trials.append ([grab_next (low_high_SNR, 100), duration 10seconds])  #save that trial response and then grab the next trial in the low_high_SNR file after 10 seconds and do this 100 times 		
+
+	else   #if subject is not e_ISI, so would be n_ISI (subject in the no ISI condition) 
+		Random.shuffle(low_high_SNR). #randomize all entries in this file and then go through that randomized order, picking one at a time 
+		response_accuracy = keyboard_response (response_keys). #collect responses during stimulus presentation
+		trials.append ([grab_next (low_high_SNR, 100)])  #save that trial response and then grab the next trial from the file without waiting a certain period of time and do this 100 times
+
+##So participant will be presented with one sentence at a time from the low_high_SNR file and then once this sentence is done being presented participants will have to verbally repeat the last word spoken in the sentence and the researcher will input this response as either correct or incorrect using keys on the keyboard. The next trial will not start until the ISI is over—so for the equal ISI participant condition this will be 10 seconds; and for the no ISI participant condition this will be as soon as the sentence is over. Participants will complete 100 trials. 
+
+##So one trial is—> listening to one file and the ISI length that follows (either 10 seconds for e_ISI or 0 seconds for n_ISI). The experiment is over when all 100 trials are completed. 
+
+##NOTE: for those in the e_ISI condition the entire trial will be 18 seconds—as one sentence is 8 seconds and then the ISI to follow is 10 seconds. For those in the n_ISI condition the entire trial will be 8 seconds—as the sentence is 8 seconds and there is no ISI to follow. 
+		
+
